@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using UnityEngine;
 
 namespace Exund.AdvancedBuilding
 {
-    class AdvancedBuildingMod
+    public class AdvancedBuildingMod
     {
+        public static string PreciseSnapshotsFolder = Path.Combine(Application.dataPath, "../PreciseSnapshots");
         private static GameObject _holder;
         public static void Load()
         {
@@ -16,7 +18,14 @@ namespace Exund.AdvancedBuilding
             _holder.AddComponent<TranslateBlocks>();
             _holder.AddComponent<ScaleBlocks>();
             _holder.AddComponent<BlocksInfo>();
+            _holder.AddComponent<SaveWindow>();
+            _holder.AddComponent<LoadWindow>();
             UnityEngine.Object.DontDestroyOnLoad(_holder);
+
+            if (!Directory.Exists(PreciseSnapshotsFolder))
+            {
+                Directory.CreateDirectory(PreciseSnapshotsFolder);
+            }
         }
 
         public static float NumberField(float value, float interval)
