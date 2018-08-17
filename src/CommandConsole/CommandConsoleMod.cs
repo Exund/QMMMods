@@ -13,6 +13,18 @@ namespace Exund.CommandConsole
 
         private static System.Reflection.FieldInfo m_Sky;
 
+        public static bool ModExists(string name)
+        {
+            foreach (var assembly in System.AppDomain.CurrentDomain.GetAssemblies())
+            {
+                if (assembly.FullName.StartsWith(name))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static void Load()
         {
             _holder = new GameObject();

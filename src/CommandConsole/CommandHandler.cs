@@ -13,38 +13,42 @@ namespace Exund.CommandConsole
         private void OnGUI()
         {
             if (!visible) return;
-            /*GUI.skin = _Internal.Skin;
+            if (CommandConsoleMod.ModExists("Nuterra.UI"))
+            {
+                GUI.skin = Nuterra.UI.NuterraGUI.Skin;
+            }
+                /*GUI.skin = _Internal.Skin;
 
-            .window = new GUIStyle(GUI.skin.window)
-            {
-                normal =
-            {
-                background = NuterraGUI.LoadImage("Border_BG.png"),
-                textColor = Color.white
-            },
-                border = new RectOffset(16, 16, 16, 16),
-            }; 
+                .window = new GUIStyle(GUI.skin.window)
+                {
+                    normal =
+                {
+                    background = NuterraGUI.LoadImage("Border_BG.png"),
+                    textColor = Color.white
+                },
+                    border = new RectOffset(16, 16, 16, 16),
+                }; 
 
-            GUI.skin.button = new GUIStyle(GUI.skin.button)
-            {
-                normal =
-            {
-                background = NuterraGUI.LoadImage("HUD_Button_BG.png"),
-                textColor = Color.white
-            },
-                hover =
-            {
-                background = NuterraGUI.LoadImage("HUD_Button_Highlight.png")
-            },
-                active =
-            {
-                background = NuterraGUI.LoadImage("HUD_Button_Selected.png")
-            },
-                border = new RectOffset(16, 16, 16, 16),
-                alignment = TextAnchor.MiddleCenter,
-            };*/
+                GUI.skin.button = new GUIStyle(GUI.skin.button)
+                {
+                    normal =
+                {
+                    background = NuterraGUI.LoadImage("HUD_Button_BG.png"),
+                    textColor = Color.white
+                },
+                    hover =
+                {
+                    background = NuterraGUI.LoadImage("HUD_Button_Highlight.png")
+                },
+                    active =
+                {
+                    background = NuterraGUI.LoadImage("HUD_Button_Selected.png")
+                },
+                    border = new RectOffset(16, 16, 16, 16),
+                    alignment = TextAnchor.MiddleCenter,
+                };*/
 
-            //GUI.skin.window = new GUIStyle { normal = { background = back, textColor = Color.white }, stretchHeight = true, stretchWidth = true };
+                //GUI.skin.window = new GUIStyle { normal = { background = back, textColor = Color.white }, stretchHeight = true, stretchWidth = true };
             GUI.Window(ID, new Rect(Screen.width - 500f, Screen.height - 500f, 500f, 500f), new GUI.WindowFunction(DoWindow), "Console"/*, new GUIStyle { normal = { background = back, textColor = Color.white }/*, stretchHeight = true, stretchWidth = true }*/);
         }
 

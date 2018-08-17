@@ -56,6 +56,10 @@ namespace Exund.AdvancedBuilding
         private void OnGUI()
         {
             if (!visible || !block) return;
+            if (AdvancedBuildingMod.ModExists("Nuterra.UI"))
+            {
+                GUI.skin = Nuterra.UI.NuterraGUI.Skin;
+            }
             /*GUI.skin = NuterraGUI.Skin;/*.window = new GUIStyle(GUI.skin.window)
             {
                 normal =

@@ -11,20 +11,39 @@ namespace Exund.AdvancedBuilding
     {
         public static string PreciseSnapshotsFolder = Path.Combine(Application.dataPath, "../PreciseSnapshots");
         private static GameObject _holder;
+
+        public static bool ModExists(string name)
+        {
+            foreach (var assembly in System.AppDomain.CurrentDomain.GetAssemblies())
+            {
+                if (assembly.FullName.StartsWith(name))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static void Load()
         {
-            _holder = new GameObject();
-            _holder.AddComponent<RotateBlocks>();
-            _holder.AddComponent<TranslateBlocks>();
-            _holder.AddComponent<ScaleBlocks>();
-            _holder.AddComponent<BlocksInfo>();
-            _holder.AddComponent<SaveWindow>();
-            _holder.AddComponent<LoadWindow>();
-            UnityEngine.Object.DontDestroyOnLoad(_holder);
-
-            if (!Directory.Exists(PreciseSnapshotsFolder))
+            try
             {
-                Directory.CreateDirectory(PreciseSnapshotsFolder);
+                _holder = new GameObject();
+                _holder.AddComponent<RotateBlocks>();
+                _holder.AddComponent<TranslateBlocks>();
+                _holder.AddComponent<ScaleBlocks>();
+                _holder.AddComponent<BlocksInfo>();
+                _holder.AddComponent<SaveWindow>();
+                _holder.AddComponent<LoadWindow>();
+                UnityEngine.Object.DontDestroyOnLoad(_holder);
+
+                if (!Directory.Exists(PreciseSnapshotsFolder))
+                {
+                    Directory.CreateDirectory(PreciseSnapshotsFolder);
+                }
+            } catch(Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
 

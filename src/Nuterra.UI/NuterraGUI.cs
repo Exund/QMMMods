@@ -17,29 +17,35 @@ namespace Nuterra.UI
 
         static NuterraGUI()
         {
-            Debug.Log(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
-            NuterraGUI.Skin = GameObject.Instantiate(GUI.skin);
-            Skin.window = Elements.Windows.Default;
-            Skin.button = Elements.Buttons.HUDDefault;
-            Skin.toggle = Elements.Toggle.Default;
-
-            Skin.verticalScrollbar = Elements.ScrollView.Vertical;
-            Skin.verticalScrollbarThumb = Elements.ScrollView.ThumbVertical;
-            Skin.horizontalScrollbar = Elements.ScrollView.Horizontal;
-            Skin.horizontalScrollbarThumb = Elements.ScrollView.ThumbHorizontal;
-
-            Skin.textField = (Skin.textArea = Elements.InputFields.Default);
-
-            Skin.label.fontSize = 12;
-            Skin.label.margin = new RectOffset { top = 0, bottom = 0 };
-            Skin.label.padding = new RectOffset { top = 0, bottom = 0 };
-
-            
-            var fonts = Resources.FindObjectsOfTypeAll<Font>();
-            foreach (Font font in fonts)
+            try
             {
-                if (font.name == "Exo-Bold") Skin.font = font;
+                //Debug.Log(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+                Skin = GameObject.Instantiate(GUI.skin);
+                Skin.window = Elements.Windows.Default;
+                Skin.button = Elements.Buttons.HUDDefault;
+                Skin.toggle = Elements.Toggle.Default;
+
+                Skin.verticalScrollbar = Elements.ScrollView.Vertical;
+                Skin.verticalScrollbarThumb = Elements.ScrollView.ThumbVertical;
+                Skin.horizontalScrollbar = Elements.ScrollView.Horizontal;
+                Skin.horizontalScrollbarThumb = Elements.ScrollView.ThumbHorizontal;
+
+                Skin.textField = (Skin.textArea = Elements.InputFields.Default);
+
+                Skin.label.fontSize = 12;
+                Skin.label.margin = new RectOffset { top = 0, bottom = 0 };
+                Skin.label.padding = new RectOffset { top = 0, bottom = 0 };
+
+
+                var fonts = Resources.FindObjectsOfTypeAll<Font>();
+                foreach (Font font in fonts)
+                {
+                    if (font.name == "Exo-Bold") Skin.font = font;
+                }
+            } catch(Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
 
