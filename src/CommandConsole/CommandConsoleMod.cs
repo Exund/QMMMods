@@ -50,7 +50,7 @@ namespace Exund.CommandConsole
                 vector3 = Singleton.Manager<ManWorld>.inst.ProjectToGround(vector3, true) + Vector3.up;
                 Singleton.Manager<CameraManager>.inst.ResetCamera(pos + b, Singleton.cameraTrans.rotation);
 
-                return "Player teleported to "+pos.ToString();
+                return "Player teleported to " + pos.ToString();
             },
             new Dictionary<string, string> {
                 {
@@ -65,7 +65,7 @@ namespace Exund.CommandConsole
                     "Z",
                     "Z position"
                 }
-            }).Register();
+            });
 
             new TTCommand("SetGravity", "Set the game Gravity", 
             delegate (Dictionary<string, string> arguments)
@@ -92,7 +92,7 @@ namespace Exund.CommandConsole
                     "(optional) Z",
                     "Gravity on Z axis (default : 0)"
                 }
-            }).Register();
+            });
 
             new TTCommand("SetVelocity", "Set the velocity of the player tech",
             delegate (Dictionary<string, string> arguments)
@@ -121,7 +121,7 @@ namespace Exund.CommandConsole
                     "(optional) Z",
                     "Velocity on the Z axis"
                 }
-            }).Register();
+            });
 
             new TTCommand("SetRotation", "Set the rotation of the player tech",
             delegate (Dictionary<string, string> arguments)
@@ -150,7 +150,7 @@ namespace Exund.CommandConsole
                     "(optional) Z",
                     "Rotation on Z axis (in degrees)"
                 }
-            }).Register();
+            });
 
 
             m_Sky = typeof(ManTimeOfDay).GetField("m_Sky", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
@@ -202,7 +202,7 @@ namespace Exund.CommandConsole
                     "Hour",
                     "Hour of the day"
                 }
-            }).Register();
+            });
 
             new TTCommand("SetDayLength", "Set day length",
             delegate (Dictionary<string, string> arguments)
@@ -221,14 +221,15 @@ namespace Exund.CommandConsole
                     "Length",
                     "Day length in minutes"
                 }
-            }).Register();
+            });
 
             new TTCommand("TimeToggle", "Toggle the Day/Night Cycle",
             delegate (Dictionary<string, string> arguments)
             {
                 Singleton.Manager<ManTimeOfDay>.inst.TogglePause();
                 return "Time progression set to " + ((TOD_Sky)m_Sky.GetValue(Singleton.Manager<ManTimeOfDay>.inst)).Components.Time.ProgressTime;
-            }).Register();
+            });
+            
         }
     }
 }

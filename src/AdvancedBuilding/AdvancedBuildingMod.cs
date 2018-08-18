@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using UnityEngine;
+using System.Reflection;
 
 namespace Exund.AdvancedBuilding
 {
@@ -13,12 +14,14 @@ namespace Exund.AdvancedBuilding
         private static GameObject _holder;
         internal static GUISkin Nuterra;
 
-        public static bool ModExists(string name)
+        public static bool ModExists(string name,out Assembly asm)
         {
+            asm = null;
             foreach (var assembly in System.AppDomain.CurrentDomain.GetAssemblies())
             {
                 if (assembly.FullName.StartsWith(name))
                 {
+                    asm = assembly;
                     return true;
                 }
             }
@@ -42,6 +45,23 @@ namespace Exund.AdvancedBuilding
                 {
                     Directory.CreateDirectory(PreciseSnapshotsFolder);
                 }
+
+                var a = new Func<Dictionary<string, string>, string>(delegate (Dictionary<string, string> arguments)
+                {
+                     if (!Singleton.playerTank) return "<color=yellow>Specified Tech not found</color>";
+
+                     Vector3 newVel = Singleton.playerTank.rbody.velocity;
+
+                     if (arguments.TryGetValue("X", out string argX)) if (int.TryParse(argX, out int intX)) newVel.x = intX;
+                     if (arguments.TryGetValue("Y", out string argY)) if (int.TryParse(argY, out int intY)) newVel.y = intY;
+                     if (arguments.TryGetValue("Z", out string argZ)) if (int.TryParse(argZ, out int intZ)) newVel.z = intZ;
+                     Singleton.playerTank.rbody.velocity = newVel;
+
+                     return "Tech velocity set to " + newVel.ToString();
+                });
+                            
+            
+
             } catch(Exception e)
             {
                 Console.WriteLine(e);
