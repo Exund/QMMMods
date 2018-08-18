@@ -29,9 +29,9 @@ namespace Exund.AdvancedBuilding
         private void OnGUI()
         {
             if (!visible) return;
-            if (AdvancedBuildingMod.ModExists("Nuterra.UI"))
+            if (AdvancedBuildingMod.Nuterra)
             {
-                GUI.skin = Nuterra.UI.NuterraGUI.Skin;
+                GUI.skin = AdvancedBuildingMod.Nuterra;
             }
             /*GUI.skin = NuterraGUI.Skin;/*.window = new GUIStyle(GUI.skin.window)
             {

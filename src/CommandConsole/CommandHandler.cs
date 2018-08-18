@@ -13,9 +13,21 @@ namespace Exund.CommandConsole
         private void OnGUI()
         {
             if (!visible) return;
-            if (CommandConsoleMod.ModExists("Nuterra.UI"))
+            if (!CommandConsoleMod.Nuterra && CommandConsoleMod.ModExists("Nuterra.UI") )
             {
-                GUI.skin = Nuterra.UI.NuterraGUI.Skin;
+                foreach (var assembly in System.AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    if (assembly.FullName.StartsWith("Nuterra.UI"))
+                    {
+                        var type = assembly.GetTypes().First(t => t.Name.Contains("NuterraGUI"));
+                        CommandConsoleMod.Nuterra = (GUISkin)type.GetProperty("Skin").GetValue(null, null);
+                        break;
+                    }
+                }
+            }
+            if (CommandConsoleMod.Nuterra)
+            {
+                GUI.skin = CommandConsoleMod.Nuterra;
             }
                 /*GUI.skin = _Internal.Skin;
 

@@ -11,6 +11,7 @@ namespace Exund.AdvancedBuilding
     {
         public static string PreciseSnapshotsFolder = Path.Combine(Application.dataPath, "../PreciseSnapshots");
         private static GameObject _holder;
+        internal static GUISkin Nuterra;
 
         public static bool ModExists(string name)
         {

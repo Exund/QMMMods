@@ -15,18 +15,11 @@ namespace Exund.AdvancedBuilding
 
         private Rect win;
 
-        private void Start()
-        {
-           // Singleton.Manager<ManPointer>.inst.MouseEvent += Inst_MouseEvent;
-        }
-
         private void Update()
         {
             if(Input.GetMouseButtonDown(2))
             {
-                posX = Input.mousePosition.x;
-                posY = Screen.height - Input.mousePosition.y;
-                win = new Rect(posX - 200f, posY, 200f, 200f);
+                win = new Rect(Input.mousePosition.x - 200f, Screen.height - Input.mousePosition.y, 200f, 200f);
                 try
                 {
                     block = Singleton.Manager<ManPointer>.inst.targetVisible.block;
@@ -44,20 +37,12 @@ namespace Exund.AdvancedBuilding
             }
         }
 
-        /*private void Inst_MouseEvent(ManPointer.Event arg1, bool arg2, bool arg3)
-        {
-            if (arg1 == ManPointer.Event.MMB && arg2 && Singleton.Manager<ManPointer>.inst.targetVisible.block)
-            {
-                
-            }
-        }*/
-
         private void OnGUI()
         {
             if (!visible||!block) return;
-            if (AdvancedBuildingMod.ModExists("Nuterra.UI"))
+            if (AdvancedBuildingMod.Nuterra)
             {
-                GUI.skin = Nuterra.UI.NuterraGUI.Skin;
+                GUI.skin = AdvancedBuildingMod.Nuterra;
             }
             /*GUI.skin = NuterraGUI.Skin;/*.window = new GUIStyle(GUI.skin.window)
             {
